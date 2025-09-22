@@ -15,7 +15,6 @@ yarn-error.log
 # Firebase Functions
 functions/node_modules/
 functions/lib/
-functions/package-lock.json
 
 # IDEs and editors
 .idea/
