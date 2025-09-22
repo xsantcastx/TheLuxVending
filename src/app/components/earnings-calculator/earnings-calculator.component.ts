@@ -7,224 +7,155 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <section id="calculator" class="py-20 bg-neutral-900 relative">
-      <!-- Background Elements -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(34,197,94,0.15),transparent_50%)]"></div>
-      </div>
-
-      <div class="container-lg mx-auto px-4 relative z-10">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
-            Earnings
-            <span class="text-transparent bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text" data-accent-text>
-              Calculator
-            </span>
-          </h2>
-          <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
-            See your potential monthly and yearly earnings based on machine type and location
-          </p>
+    <section id="earn" class="section">
+      <div class="container-lg">
+        <div class="text-center mb-8">
+          <h2 class="h2 mb-4">Earnings <span class="accent">Calculator</span></h2>
+          <p class="text-soft">See how much you could earn each month</p>
         </div>
 
-        <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <!-- Calculator Form -->
-            <div class="bg-neutral-800/50 rounded-2xl p-8 backdrop-blur-sm border border-neutral-700">
-              <h3 class="text-2xl font-bold text-white mb-8">Calculate Your Potential</h3>
+        <div class="calculator">
+          <div class="grid grid-md-2 gap-8">
+            <!-- Input Side -->
+            <div>
+              <h3 class="h3 mb-6">Calculate Your Potential</h3>
               
-              <div class="space-y-6">
-                <!-- Machine Type -->
-                <div>
-                  <label class="block text-neutral-300 mb-3 font-semibold">Machine Type</label>
-                  <div class="grid grid-cols-1 gap-3">
-                    <label class="flex items-center p-4 bg-neutral-700/50 rounded-lg border border-neutral-600 hover:border-green-500/50 transition-colors cursor-pointer">
-                      <input 
-                        type="radio" 
-                        name="machineType" 
-                        value="snack"
-                        [(ngModel)]="selectedMachine"
-                        class="sr-only">
-                      <div class="w-4 h-4 border-2 border-neutral-400 rounded-full mr-3 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-green-500 rounded-full" 
-                             [class.opacity-100]="selectedMachine() === 'snack'"
-                             [class.opacity-0]="selectedMachine() !== 'snack'"
-                             data-accent-bg></div>
-                      </div>
-                      <div class="flex-1">
-                        <div class="font-semibold text-white">Snack Master Pro</div>
-                        <div class="text-sm text-neutral-400">$12,500 investment</div>
-                      </div>
-                      <div class="text-green-400 font-bold" data-accent-text>$800-1,200/mo</div>
-                    </label>
-                    
-                    <label class="flex items-center p-4 bg-neutral-700/50 rounded-lg border border-neutral-600 hover:border-green-500/50 transition-colors cursor-pointer">
-                      <input 
-                        type="radio" 
-                        name="machineType" 
-                        value="beverage"
-                        [(ngModel)]="selectedMachine"
-                        class="sr-only">
-                      <div class="w-4 h-4 border-2 border-neutral-400 rounded-full mr-3 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-green-500 rounded-full" 
-                             [class.opacity-100]="selectedMachine() === 'beverage'"
-                             [class.opacity-0]="selectedMachine() !== 'beverage'"
-                             data-accent-bg></div>
-                      </div>
-                      <div class="flex-1">
-                        <div class="font-semibold text-white">Beverage Station Elite</div>
-                        <div class="text-sm text-neutral-400">$8,900 investment</div>
-                      </div>
-                      <div class="text-green-400 font-bold" data-accent-text>$600-900/mo</div>
-                    </label>
-                    
-                    <label class="flex items-center p-4 bg-neutral-700/50 rounded-lg border border-neutral-600 hover:border-green-500/50 transition-colors cursor-pointer">
-                      <input 
-                        type="radio" 
-                        name="machineType" 
-                        value="combo"
-                        [(ngModel)]="selectedMachine"
-                        class="sr-only">
-                      <div class="w-4 h-4 border-2 border-neutral-400 rounded-full mr-3 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-green-500 rounded-full" 
-                             [class.opacity-100]="selectedMachine() === 'combo'"
-                             [class.opacity-0]="selectedMachine() !== 'combo'"
-                             data-accent-bg></div>
-                      </div>
-                      <div class="flex-1">
-                        <div class="font-semibold text-white">Combo Max Ultimate</div>
-                        <div class="text-sm text-neutral-400">$18,750 investment</div>
-                      </div>
-                      <div class="text-green-400 font-bold" data-accent-text>$1,200-1,800/mo</div>
-                    </label>
-                  </div>
-                </div>
-
-                <!-- Location Type -->
-                <div>
-                  <label class="block text-neutral-300 mb-3 font-semibold">Location Type</label>
-                  <select 
-                    [(ngModel)]="selectedLocation"
-                    class="w-full bg-neutral-700 border border-neutral-600 text-white rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    data-accent-ring>
-                    <option value="">Choose location type...</option>
-                    <option value="office">Office Building (High Traffic)</option>
-                    <option value="school">School/University</option>
-                    <option value="hospital">Hospital/Medical Center</option>
-                    <option value="gym">Gym/Fitness Center</option>
-                    <option value="retail">Retail Store</option>
-                    <option value="factory">Factory/Warehouse</option>
-                  </select>
-                </div>
-
-                <!-- Number of Machines -->
-                <div>
-                  <label class="block text-neutral-300 mb-3 font-semibold">Number of Machines</label>
-                  <div class="relative">
+              <!-- Machine Type -->
+              <div class="mb-6">
+                <label class="block font-semibold mb-3">Machine Type</label>
+                <div class="grid gap-3">
+                  <label class="radio-card" [class.selected]="selectedMachine() === 'atm'">
                     <input 
-                      type="number" 
-                      min="1" 
-                      max="10"
-                      [(ngModel)]="numberOfMachines"
-                      class="w-full bg-neutral-700 border border-neutral-600 text-white rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      placeholder="Enter number of machines"
-                      data-accent-ring>
-                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2 text-neutral-400">
-                      machines
+                      type="radio" 
+                      name="machineType" 
+                      value="atm"
+                      [(ngModel)]="selectedMachine"
+                      class="sr-only">
+                    <div class="flex justify-between items-center">
+                      <div>
+                        <div class="font-semibold">ATM Machine</div>
+                        <div class="small text-muted">High-traffic locations</div>
+                      </div>
+                      <div class="accent font-bold">$200-500</div>
                     </div>
-                  </div>
-                  <p class="text-sm text-neutral-400 mt-2">Recommended: 1-3 machines per location</p>
+                  </label>
+                  
+                  <label class="radio-card" [class.selected]="selectedMachine() === 'claw'">
+                    <input 
+                      type="radio" 
+                      name="machineType" 
+                      value="claw"
+                      [(ngModel)]="selectedMachine"
+                      class="sr-only">
+                    <div class="flex justify-between items-center">
+                      <div>
+                        <div class="font-semibold">Claw Machine</div>
+                        <div class="small text-muted">Entertainment focused</div>
+                      </div>
+                      <div class="accent font-bold">$150-350</div>
+                    </div>
+                  </label>
+                  
+                  <label class="radio-card" [class.selected]="selectedMachine() === 'vending'">
+                    <input 
+                      type="radio" 
+                      name="machineType" 
+                      value="vending"
+                      [(ngModel)]="selectedMachine"
+                      class="sr-only">
+                    <div class="flex justify-between items-center">
+                      <div>
+                        <div class="font-semibold">Vending Machine</div>
+                        <div class="small text-muted">Snacks & beverages</div>
+                      </div>
+                      <div class="accent font-bold">$300-600</div>
+                    </div>
+                  </label>
                 </div>
+              </div>
+
+              <!-- Location Type -->
+              <div class="mb-6">
+                <label class="block font-semibold mb-3">Business Type</label>
+                <select 
+                  [(ngModel)]="selectedLocation"
+                  class="select w-full">
+                  <option value="">Choose your business type...</option>
+                  <option value="gym">Gym/Fitness Center</option>
+                  <option value="office">Office Building</option>
+                  <option value="hotel">Hotel/Motel</option>
+                  <option value="convenience">Convenience Store</option>
+                  <option value="laundromat">Laundromat</option>
+                  <option value="restaurant">Restaurant/Bar</option>
+                </select>
+              </div>
+
+              <!-- Daily Customers -->
+              <div class="mb-6">
+                <label class="block font-semibold mb-3">Daily Customer Count</label>
+                <input 
+                  type="number" 
+                  min="10" 
+                  max="1000"
+                  [(ngModel)]="dailyCustomers"
+                  class="input w-full"
+                  placeholder="Approximate daily foot traffic">
+                <p class="form-note mt-2">Higher foot traffic = higher earnings potential</p>
               </div>
             </div>
 
-            <!-- Results Panel -->
-            <div class="bg-gradient-to-br from-neutral-800/50 to-neutral-700/50 rounded-2xl p-8 backdrop-blur-sm border border-neutral-700">
-              <h3 class="text-2xl font-bold text-white mb-8">Your Earning Potential</h3>
+            <!-- Results Side -->
+            <div class="calculator__results">
+              <h3 class="h3 mb-6">Your Monthly Earnings</h3>
               
-              @if (!selectedMachine() || !selectedLocation() || numberOfMachines() < 1) {
+              @if (!selectedMachine() || !selectedLocation() || dailyCustomers() < 1) {
                 <div class="text-center py-12">
-                  <div class="w-16 h-16 bg-neutral-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-neutral-400" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-                    </svg>
-                  </div>
-                  <p class="text-neutral-400">Select your preferences to see earning calculations</p>
+                  <div class="text-6xl mb-4">📊</div>
+                  <p class="text-muted">Complete the form to see your earnings potential</p>
                 </div>
               } @else {
-                <div class="space-y-8">
-                  <!-- Investment Summary -->
-                  <div class="bg-neutral-800/50 rounded-xl p-6">
-                    <h4 class="text-lg font-semibold text-white mb-4">Investment Summary</h4>
-                    <div class="space-y-3">
-                      <div class="flex justify-between">
-                        <span class="text-neutral-400">Machine Cost:</span>
-                        <span class="text-white font-semibold">{{ formatCurrency(totalInvestment()) }}</span>
-                      </div>
-                      <div class="flex justify-between">
-                        <span class="text-neutral-400">Setup & Installation:</span>
-                        <span class="text-white font-semibold">{{ formatCurrency(setupCost()) }}</span>
-                      </div>
-                      <div class="border-t border-neutral-700 pt-3">
-                        <div class="flex justify-between">
-                          <span class="text-white font-semibold">Total Investment:</span>
-                          <span class="text-2xl font-bold text-white">{{ formatCurrency(totalCost()) }}</span>
-                        </div>
-                      </div>
+                <div class="space-y-6">
+                  <!-- Monthly Revenue -->
+                  <div>
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-muted">Estimated Monthly Revenue</span>
+                      <span class="h3 accent">{{ formatCurrency(monthlyRevenue()) }}</span>
+                    </div>
+                    <div class="w-full bg-neutral-800 rounded-full h-2">
+                      <div class="accent-bg h-2 rounded-full" [style.width.%]="revenuePercentage()"></div>
                     </div>
                   </div>
 
-                  <!-- Earnings Projection -->
-                  <div class="space-y-6">
-                    <!-- Monthly Earnings -->
-                    <div class="bg-green-500/10 border border-green-500/20 rounded-xl p-6" data-accent-bg>
-                      <h4 class="text-lg font-semibold text-white mb-4">Monthly Earnings</h4>
-                      <div class="space-y-3">
-                        <div class="flex justify-between">
-                          <span class="text-neutral-300">Gross Revenue:</span>
-                          <span class="text-white font-semibold">{{ formatCurrency(monthlyRevenue().min) }} - {{ formatCurrency(monthlyRevenue().max) }}</span>
-                        </div>
-                        <div class="flex justify-between">
-                          <span class="text-neutral-300">Operating Costs:</span>
-                          <span class="text-white font-semibold">{{ formatCurrency(monthlyOperatingCosts()) }}</span>
-                        </div>
-                        <div class="border-t border-green-500/20 pt-3">
-                          <div class="flex justify-between">
-                            <span class="text-green-400 font-semibold" data-accent-text>Net Profit:</span>
-                            <span class="text-2xl font-bold text-green-400" data-accent-text>{{ formatCurrency(monthlyProfit().min) }} - {{ formatCurrency(monthlyProfit().max) }}</span>
-                          </div>
-                        </div>
-                      </div>
+                  <!-- Your Share -->
+                  <div>
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-muted">Your Share ({{ yourSharePercentage() }}%)</span>
+                      <span class="h2">{{ formatCurrency(yourShare()) }}</span>
                     </div>
+                    <p class="small text-muted">After operational costs and our service fee</p>
+                  </div>
 
-                    <!-- Annual Projection -->
-                    <div class="bg-neutral-800/50 rounded-xl p-6">
-                      <h4 class="text-lg font-semibold text-white mb-4">Annual Projection</h4>
-                      <div class="space-y-3">
-                        <div class="flex justify-between">
-                          <span class="text-neutral-400">Annual Profit:</span>
-                          <span class="text-2xl font-bold text-white">{{ formatCurrency(annualProfit().min) }} - {{ formatCurrency(annualProfit().max) }}</span>
-                        </div>
-                        <div class="flex justify-between">
-                          <span class="text-neutral-400">ROI:</span>
-                          <span class="text-xl font-bold text-green-400" data-accent-text>{{ roi().min }}% - {{ roi().max }}%</span>
-                        </div>
-                        <div class="flex justify-between">
-                          <span class="text-neutral-400">Payback Period:</span>
-                          <span class="text-white font-semibold">{{ paybackPeriod().min }}-{{ paybackPeriod().max }} months</span>
-                        </div>
-                      </div>
+                  <!-- Annual Projection -->
+                  <div class="border-t pt-4">
+                    <div class="flex justify-between items-center">
+                      <span class="text-muted">Annual Earnings</span>
+                      <span class="h2 accent">{{ formatCurrency(annualEarnings()) }}</span>
+                    </div>
+                  </div>
+
+                  <!-- Performance Indicator -->
+                  <div class="box">
+                    <div class="text-center">
+                      <div class="h3 accent mb-2">{{ performanceRating() }}</div>
+                      <div class="small text-muted">Performance Rating</div>
+                      <p class="mt-3 small">{{ performanceMessage() }}</p>
                     </div>
                   </div>
 
                   <!-- CTA -->
-                  <div class="text-center pt-6">
-                    <button class="w-full bg-gradient-to-r from-green-500 to-emerald-400 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-green-600 hover:to-emerald-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" data-accent-bg>
-                      Get Started with This Package
-                    </button>
-                    <p class="text-sm text-neutral-400 mt-3">
-                      * Estimates based on industry averages and location performance data
-                    </p>
+                  <div class="text-center">
+                    <a href="#contact" class="btn btn--accent w-full">Get My Custom Quote</a>
+                    <p class="form-note mt-3">* Estimates based on industry averages and similar locations</p>
                   </div>
                 </div>
               }
@@ -238,35 +169,34 @@ import { FormsModule } from '@angular/forms';
 export class EarningsCalculatorComponent {
   selectedMachine = signal<string>('');
   selectedLocation = signal<string>('');
-  numberOfMachines = signal<number>(1);
+  dailyCustomers = signal<number>(0);
 
   // Machine data
   private machineData = {
-    snack: { cost: 12500, revenueMin: 800, revenueMax: 1200 },
-    beverage: { cost: 8900, revenueMin: 600, revenueMax: 900 },
-    combo: { cost: 18750, revenueMin: 1200, revenueMax: 1800 }
+    atm: { revenueMin: 200, revenueMax: 500 },
+    claw: { revenueMin: 150, revenueMax: 350 },
+    vending: { revenueMin: 300, revenueMax: 600 }
   };
 
   // Location multipliers
   private locationMultipliers = {
-    office: { min: 1.0, max: 1.2 },
-    school: { min: 0.9, max: 1.1 },
-    hospital: { min: 1.1, max: 1.3 },
-    gym: { min: 0.8, max: 1.0 },
-    retail: { min: 1.0, max: 1.15 },
-    factory: { min: 0.85, max: 1.05 }
+    gym: { min: 1.0, max: 1.2 },
+    office: { min: 1.1, max: 1.3 },
+    hotel: { min: 1.2, max: 1.4 },
+    convenience: { min: 1.0, max: 1.15 },
+    laundromat: { min: 0.8, max: 1.0 },
+    restaurant: { min: 0.9, max: 1.1 }
   };
 
-  // Computed values
-  totalInvestment = computed(() => {
-    const machine = this.selectedMachine();
-    if (!machine || !this.machineData[machine as keyof typeof this.machineData]) return 0;
-    return this.machineData[machine as keyof typeof this.machineData].cost * this.numberOfMachines();
+  // Traffic multipliers
+  private getTrafficMultiplier = computed(() => {
+    const customers = this.dailyCustomers();
+    if (customers >= 500) return 1.3;
+    if (customers >= 200) return 1.1;
+    if (customers >= 100) return 1.0;
+    if (customers >= 50) return 0.8;
+    return 0.6;
   });
-
-  setupCost = computed(() => this.totalInvestment() * 0.15); // 15% of machine cost
-
-  totalCost = computed(() => this.totalInvestment() + this.setupCost());
 
   monthlyRevenue = computed(() => {
     const machine = this.selectedMachine();
@@ -275,62 +205,60 @@ export class EarningsCalculatorComponent {
     if (!machine || !location || 
         !this.machineData[machine as keyof typeof this.machineData] ||
         !this.locationMultipliers[location as keyof typeof this.locationMultipliers]) {
-      return { min: 0, max: 0 };
+      return 0;
     }
 
     const machineRev = this.machineData[machine as keyof typeof this.machineData];
     const locationMult = this.locationMultipliers[location as keyof typeof this.locationMultipliers];
+    const trafficMult = this.getTrafficMultiplier();
     
-    return {
-      min: machineRev.revenueMin * locationMult.min * this.numberOfMachines(),
-      max: machineRev.revenueMax * locationMult.max * this.numberOfMachines()
-    };
+    // Use average of min/max for display
+    const avgRevenue = (machineRev.revenueMin + machineRev.revenueMax) / 2;
+    const avgLocation = (locationMult.min + locationMult.max) / 2;
+    
+    return Math.round(avgRevenue * avgLocation * trafficMult);
   });
 
-  monthlyOperatingCosts = computed(() => {
-    return this.numberOfMachines() * 150; // $150 per machine per month
+  yourSharePercentage = computed(() => {
+    const machine = this.selectedMachine();
+    // Different revenue shares based on machine type
+    const shares = { atm: 50, claw: 40, vending: 45 };
+    return shares[machine as keyof typeof shares] || 45;
   });
 
-  monthlyProfit = computed(() => {
+  yourShare = computed(() => {
     const revenue = this.monthlyRevenue();
-    const costs = this.monthlyOperatingCosts();
-    
-    return {
-      min: revenue.min - costs,
-      max: revenue.max - costs
-    };
+    const percentage = this.yourSharePercentage();
+    return Math.round(revenue * (percentage / 100));
   });
 
-  annualProfit = computed(() => {
-    const monthly = this.monthlyProfit();
-    return {
-      min: monthly.min * 12,
-      max: monthly.max * 12
-    };
+  annualEarnings = computed(() => {
+    return this.yourShare() * 12;
   });
 
-  roi = computed(() => {
-    const annual = this.annualProfit();
-    const totalCost = this.totalCost();
-    
-    if (totalCost === 0) return { min: 0, max: 0 };
-    
-    return {
-      min: Math.round((annual.min / totalCost) * 100),
-      max: Math.round((annual.max / totalCost) * 100)
-    };
+  revenuePercentage = computed(() => {
+    const revenue = this.monthlyRevenue();
+    const maxPossible = 800; // Max possible revenue for calculation
+    return Math.min((revenue / maxPossible) * 100, 100);
   });
 
-  paybackPeriod = computed(() => {
-    const monthly = this.monthlyProfit();
-    const totalCost = this.totalCost();
-    
-    if (monthly.max === 0) return { min: 0, max: 0 };
-    
-    return {
-      min: Math.round(totalCost / monthly.max),
-      max: Math.round(totalCost / monthly.min)
+  performanceRating = computed(() => {
+    const monthly = this.yourShare();
+    if (monthly >= 400) return 'Excellent';
+    if (monthly >= 250) return 'Good';
+    if (monthly >= 150) return 'Average';
+    return 'Poor';
+  });
+
+  performanceMessage = computed(() => {
+    const rating = this.performanceRating();
+    const messages = {
+      'Excellent': 'Outstanding location and traffic! This setup has high earning potential.',
+      'Good': 'Solid earning potential. Consider adding additional machines.',
+      'Average': 'Moderate earnings expected. Location traffic may be limiting factor.',
+      'Poor': 'Low earnings potential. Consider higher traffic location or different machine type.'
     };
+    return messages[rating as keyof typeof messages];
   });
 
   formatCurrency(amount: number): string {
