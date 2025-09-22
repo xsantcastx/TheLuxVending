@@ -127,9 +127,9 @@ import { FormsModule } from '@angular/forms';
             
             <!-- Company Info -->
             <div>
-              <h3 class="h3 mb-6">Crown Point Vending</h3>
+              <h3 class="h3 mb-6">TheLuxVending</h3>
               <p class="text-soft mb-6">
-                Northwest Indiana's leading vending machine placement service. 
+                Stamford's leading vending machine placement service. 
                 We handle everything so you can focus on your business while earning passive income.
               </p>
               
@@ -142,9 +142,7 @@ import { FormsModule } from '@angular/forms';
                   <div>
                     <h4 class="font-semibold mb-1">Service Area</h4>
                     <p class="text-soft small">
-                      Crown Point, Merrillville, Schererville,<br>
-                      Highland, Munster, Hammond, Gary<br>
-                      <em>+ surrounding NW Indiana</em>
+                      Stamford and surrounding areas
                     </p>
                   </div>
                 </div>
@@ -156,8 +154,8 @@ import { FormsModule } from '@angular/forms';
                   <div>
                     <h4 class="font-semibold mb-1">Phone</h4>
                     <p class="text-soft">
-                      <a href="tel:+12195551234" class="hover:text-white transition-colors">(219) 555-1234</a><br>
-                      <span class="form-note">Mon-Fri 9AM-6PM CT</span>
+                      <a href="tel:+12039063603" class="hover:text-white transition-colors">(203) 906-3603</a><br>
+                      <span class="form-note">Mon-Fri 9AM-6PM ET</span>
                     </p>
                   </div>
                 </div>
@@ -169,7 +167,7 @@ import { FormsModule } from '@angular/forms';
                   <div>
                     <h4 class="font-semibold mb-1">Email</h4>
                     <p class="text-soft">
-                      <a href="mailto:info@crownpointvending.com" class="hover:text-white transition-colors">info@crownpointvending.com</a><br>
+                      <a href="mailto:diego@TheLuxVending.com" class="hover:text-white transition-colors">diego@TheLuxVending.com</a><br>
                       <span class="form-note">Quick response guaranteed</span>
                     </p>
                   </div>
@@ -202,7 +200,7 @@ import { FormsModule } from '@angular/forms';
       <!-- Bottom Bar -->
       <div class="container-lg footer__row">
         <div>
-          © 2024 Crown Point Vending. Licensed & Insured in Indiana.
+          © 2024 TheLuxVending • All rights reserved.
         </div>
         <div class="footer__links">
           <a href="#privacy">Privacy</a>

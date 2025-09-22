@@ -10,8 +10,8 @@ import { AccentColorService } from '../../services/accent-color.service';
     <header class="header">
       <nav class="container-lg nav">
         <div class="nav__brand">
-          <div class="logo-square">CP</div>
-          <span class="font-semibold">Crown Point Vending</span>
+          <div class="logo-square">TL</div>
+          <span class="font-semibold">TheLuxVending</span>
         </div>
         <div class="nav__links">
           <a href="#how">How It Works</a>

@@ -14,6 +14,27 @@ import { FormsModule } from '@angular/forms';
           <p class="text-soft">See how much you could earn each month</p>
         </div>
 
+        <!-- Earnings Examples -->
+        <div class="grid grid-md-3 gap-6 mb-12">
+          <div class="box text-center">
+            <div class="font-semibold mb-2">Busy Gas Station – ATM</div>
+            <div class="text-sm text-soft mb-4">250 transactions/mo × $2.00 surcharge × 25% share</div>
+            <div class="h3 accent">≈ $125/mo to you</div>
+          </div>
+          <div class="box text-center">
+            <div class="font-semibold mb-2">Mall Corridor – Claw</div>
+            <div class="text-sm text-soft mb-4">1,200 plays/mo × $1.00 price × 25% share</div>
+            <div class="h3 accent">≈ $300/mo to you</div>
+          </div>
+          <div class="box text-center">
+            <div class="font-semibold mb-2">Gym – Vending</div>
+            <div class="text-sm text-soft mb-4">$1,500 sales/mo × 25% share</div>
+            <div class="h3 accent">≈ $375/mo to you</div>
+          </div>
+        </div>
+        
+        <p class="text-xs text-soft text-center mb-8">Examples are illustrative; actual results vary by foot traffic and location quality.</p>
+
         <div class="calculator">
           <div class="grid grid-md-2 gap-8">
             <!-- Input Side -->
@@ -33,7 +54,7 @@ import { FormsModule } from '@angular/forms';
                       class="sr-only">
                     <div class="flex justify-between items-center">
                       <div>
-                        <div class="font-semibold">ATM Machine</div>
+                        <div class="font-semibold">ATM Machine (25% share)</div>
                         <div class="small text-muted">High-traffic locations</div>
                       </div>
                       <div class="accent font-bold">$200-500</div>
@@ -49,7 +70,7 @@ import { FormsModule } from '@angular/forms';
                       class="sr-only">
                     <div class="flex justify-between items-center">
                       <div>
-                        <div class="font-semibold">Claw Machine</div>
+                        <div class="font-semibold">Claw Machine (25% share)</div>
                         <div class="small text-muted">Entertainment focused</div>
                       </div>
                       <div class="accent font-bold">$150-350</div>
@@ -65,7 +86,7 @@ import { FormsModule } from '@angular/forms';
                       class="sr-only">
                     <div class="flex justify-between items-center">
                       <div>
-                        <div class="font-semibold">Vending Machine</div>
+                        <div class="font-semibold">Vending Machine (25% share)</div>
                         <div class="small text-muted">Snacks & beverages</div>
                       </div>
                       <div class="accent font-bold">$300-600</div>
@@ -220,10 +241,8 @@ export class EarningsCalculatorComponent {
   });
 
   yourSharePercentage = computed(() => {
-    const machine = this.selectedMachine();
-    // Different revenue shares based on machine type
-    const shares = { atm: 50, claw: 40, vending: 45 };
-    return shares[machine as keyof typeof shares] || 45;
+    // Flat 25% profit share for all machine types
+    return 25;
   });
 
   yourShare = computed(() => {
