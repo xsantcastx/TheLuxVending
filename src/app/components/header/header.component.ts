@@ -10,7 +10,9 @@ import { AccentColorService } from '../../services/accent-color.service';
     <header class="header">
       <nav class="container-lg nav">
         <div class="nav__brand">
-          <div class="logo-square">TL</div>
+          <div class="h-8 w-8">
+            <img src="assets/TheLuxVendingLogo.jpg" alt="TheLuxVending Logo" class="w-full h-full object-contain rounded" />
+          </div>
           <span class="font-semibold">TheLuxVending</span>
         </div>
         <div class="nav__links">
@@ -18,7 +20,7 @@ import { AccentColorService } from '../../services/accent-color.service';
           <a href="#offer">Machines</a>
           <a href="#earn">Earnings</a>
           <a href="#faq">FAQ</a>
-          <a href="#contact">Get a Quote</a>
+          <a href="#contact">Check eligibility</a>
         </div>
         <button class="mobile-menu" (click)="toggleMobileMenu()">☰</button>
         <div class="theme-switcher">
@@ -35,7 +37,7 @@ import { AccentColorService } from '../../services/accent-color.service';
             title="Gold Theme">
           </button>
         </div>
-        <a href="#contact" class="btn btn--sm btn--accent">Get a Quote</a>
+        <a href="#contact" class="btn btn--sm btn--accent">Check eligibility</a>
       </nav>
       <div class="mobile-nav" [class.show]="isMobileMenuOpen">
         <div class="container-lg">
@@ -43,7 +45,7 @@ import { AccentColorService } from '../../services/accent-color.service';
           <a href="#offer" (click)="closeMobileMenu()">Machines</a>
           <a href="#earn" (click)="closeMobileMenu()">Earnings</a>
           <a href="#faq" (click)="closeMobileMenu()">FAQ</a>
-          <a href="#contact" (click)="closeMobileMenu()">Get a Quote</a>
+          <a href="#contact" (click)="closeMobileMenu()">Check eligibility</a>
           <div class="theme-switcher mt-4">
             <span class="xs text-muted">Theme:</span>
             <button

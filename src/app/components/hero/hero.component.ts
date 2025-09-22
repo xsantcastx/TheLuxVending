@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
           <h1 class="h1 mt-3">Own a busy store? <span class="accent">Turn a corner into steady income.</span></h1>
           <p class="mt-4 text-soft">We install & service <strong>ATMs, claw and vending machines</strong>. No upfront cost. No maintenance. <strong>You collect your share monthly.</strong></p>
           <div class="mt-6 flex gap-3">
-            <a href="#contact" class="btn btn--accent">Get a Quote</a>
+            <a href="#contact" class="btn btn--accent">Check eligibility</a>
             <a href="#earn" class="btn btn--outline">See Earnings Examples</a>
           </div>
           <div class="mt-6 flex items-center gap-6 small text-muted">

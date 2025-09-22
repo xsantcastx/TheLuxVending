@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
           <div class="grid grid-md-2 gap-8">
             <!-- Contact Form -->
             <div>
-              <h2 class="h2 mb-4">Get Your <span class="accent">Free Quote</span></h2>
+              <h2 class="h2 mb-4">Check <span class="accent">eligibility</span></h2>
               <p class="text-soft mb-6">
                 Ready to start earning? Tell us about your business and we'll create a custom proposal.
               </p>
@@ -101,7 +101,7 @@ import { FormsModule } from '@angular/forms';
                       Sending...
                     </span>
                   } @else {
-                    Get My Free Quote
+                    Check eligibility
                   }
                 </button>
                 
@@ -112,7 +112,7 @@ import { FormsModule } from '@angular/forms';
                        [class.bg-red-900/30]="submitStatus() === 'error'"
                        [class.text-red-400]="submitStatus() === 'error'">
                     @if (submitStatus() === 'success') {
-                      <p>✅ Thank you! We'll contact you within 24 hours with your custom quote.</p>
+                      <p>✅ Thank you! We'll contact you within 24 hours to check your eligibility.</p>
                     } @else {
                       <p>❌ Something went wrong. Please try again or call us directly.</p>
                     }

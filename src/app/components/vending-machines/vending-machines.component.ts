@@ -16,10 +16,8 @@ import { CommonModule } from '@angular/common';
         <div class="grid grid-md-3 gap-6">
           <!-- ATM Machine -->
           <div class="card">
-            <div class="card__media flex items-center justify-center">
-              <div class="accent-bg rounded-xl p-4">
-                <span class="text-2xl">💳</span>
-              </div>
+            <div class="card__media overflow-hidden">
+              <img src="assets/atm.jpg" alt="ATM Machine" class="w-full h-48 object-cover" />
             </div>
             <div class="card__body">
               <h3 class="h3 mb-3">ATM Machine</h3>
@@ -50,10 +48,8 @@ import { CommonModule } from '@angular/common';
 
           <!-- Claw Machine -->
           <div class="card">
-            <div class="card__media flex items-center justify-center">
-              <div class="accent-bg rounded-xl p-4">
-                <span class="text-2xl">🎯</span>
-              </div>
+            <div class="card__media overflow-hidden">
+              <img src="assets/Extreme_mini.jpg" alt="Claw Machine" class="w-full h-48 object-cover" />
             </div>
             <div class="card__body">
               <h3 class="h3 mb-3">Claw Machine</h3>
@@ -84,10 +80,8 @@ import { CommonModule } from '@angular/common';
 
           <!-- Vending Machine -->
           <div class="card">
-            <div class="card__media flex items-center justify-center">
-              <div class="accent-bg rounded-xl p-4">
-                <span class="text-2xl">🥤</span>
-              </div>
+            <div class="card__media overflow-hidden">
+              <img src="assets/mini_mighty.jpg" alt="Vending Machine" class="w-full h-48 object-cover" />
             </div>
             <div class="card__body">
               <h3 class="h3 mb-3">Vending Machine</h3>
@@ -146,7 +140,7 @@ import { CommonModule } from '@angular/common';
         </div>
 
         <div class="text-center mt-8">
-          <a href="#contact" class="btn btn--accent">Get Your Quote</a>
+          <a href="#contact" class="btn btn--accent">Check eligibility</a>
         </div>
       </div>
     </section>

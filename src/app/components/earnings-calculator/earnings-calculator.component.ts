@@ -18,18 +18,15 @@ import { FormsModule } from '@angular/forms';
         <div class="grid grid-md-3 gap-6 mb-12">
           <div class="box text-center">
             <div class="font-semibold mb-2">Busy Gas Station – ATM</div>
-            <div class="text-sm text-soft mb-4">250 transactions/mo × $2.00 surcharge × 25% share</div>
-            <div class="h3 accent">≈ $125/mo to you</div>
+            <div class="text-sm text-soft mb-4">250 transactions/mo × $3.50 surcharge × 25% share</div>
           </div>
           <div class="box text-center">
             <div class="font-semibold mb-2">Mall Corridor – Claw</div>
-            <div class="text-sm text-soft mb-4">1,200 plays/mo × $1.00 price × 25% share</div>
-            <div class="h3 accent">≈ $300/mo to you</div>
+            <div class="text-sm text-soft mb-4">1,200 plays/mo × $2.00 price × 25% share</div>
           </div>
           <div class="box text-center">
             <div class="font-semibold mb-2">Gym – Vending</div>
             <div class="text-sm text-soft mb-4">$1,500 sales/mo × 25% share</div>
-            <div class="h3 accent">≈ $375/mo to you</div>
           </div>
         </div>
         
@@ -175,7 +172,7 @@ import { FormsModule } from '@angular/forms';
 
                   <!-- CTA -->
                   <div class="text-center">
-                    <a href="#contact" class="btn btn--accent w-full">Get My Custom Quote</a>
+                    <a href="#contact" class="btn btn--accent w-full">Check eligibility</a>
                     <p class="form-note mt-3">* Estimates based on industry averages and similar locations</p>
                   </div>
                 </div>
