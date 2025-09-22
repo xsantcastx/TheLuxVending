@@ -88,8 +88,43 @@ body { margin: 0; font-family: var(--font-sans); }
   display: flex; align-items: center; justify-content: space-between;
   padding-block: 0.75rem;
 }
+/* =========
+   Brand Logo
+   ========= */
+.nav__logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  min-width: 0; /* allow text to truncate nicely */
+}
+
+.nav__logo-img {
+  height: 2rem;
+  width: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  border-radius: .375rem;         /* subtle rounding for uploaded logos */
+  background: color-mix(in oklab, var(--n-900) 60%, transparent);
+}
+
+@media (min-width: 768px) {
+  .nav__logo-img { height: 2.25rem; }
+}
+
+/* Optional: logo text next to image */
+.nav__logo-text {
+  font-weight: 800;
+  letter-spacing: .2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .nav__brand {
   display: flex; align-items: center; gap: 0.75rem;
+}
+.nav__brand a {
+  color: inherit; text-decoration: none;
 }
 .logo-square {
   height: 2rem; width: 2rem; border-radius: var(--radius-xl);
@@ -180,8 +215,101 @@ body { margin: 0; font-family: var(--font-sans); }
   border: 1px solid var(--n-800);
   border-radius: var(--radius-2xl);
 }
-.card { border: 1px solid var(--n-800); border-radius: var(--radius-2xl); overflow: hidden; }
-.card__media { height: 10rem; background: var(--n-800); }
+/* =========
+   Image Frames (shared)
+   ========= */
+.img-frame {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--n-800);
+  border-radius: var(--radius-2xl);
+  background: var(--n-900);
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+}
+
+/* Common aspect options */
+.ar-4x3 { aspect-ratio: 4 / 3; }
+.ar-1x1 { aspect-ratio: 1 / 1; }
+.ar-16x9 { aspect-ratio: 16 / 9; }
+
+/* How the image fits inside the frame */
+.img--cover, .img--contain {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  display: block;
+}
+.img--cover  { object-fit: cover; }
+.img--contain{ object-fit: contain; background: var(--n-800); }
+
+/* Subtle zoom on hover */
+.img-frame:hover .img--cover {
+  transform: scale(1.02);
+  transition: transform .25s ease;
+}
+
+/* =========
+   Caption / Label
+   ========= */
+.img-caption {
+  position: absolute;
+  inset-inline: .75rem;
+  bottom: .75rem;
+  padding: .4rem .6rem;
+  background: color-mix(in oklab, var(--n-900) 60%, transparent);
+  border: 1px solid var(--n-800);
+  border-radius: .5rem;
+  font-size: .82rem;
+  color: #e5e5e5;
+  backdrop-filter: blur(6px);
+}
+
+/* =========
+   Equipment Gallery (ATMs + Claw)
+   ========= */
+.equip-grid {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 640px) { .equip-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (min-width: 1024px){ .equip-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+.equip-card {
+  border: 1px solid var(--n-800);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  background: color-mix(in oklab, var(--n-900) 60%, transparent);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.equip-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+  border-color: var(--accent-ring);
+}
+
+.equip-card__media { position: relative; }
+.equip-card__body  { padding: 1rem; }
+.equip-title { font-weight: 800; margin: 0 0 .25rem; }
+.equip-meta  { color: var(--n-400); font-size: .9rem; }
+
+/* =========
+   Alignment helpers for tall devices (claws/ATMs)
+   ========= */
+.equip--tall .img--contain,
+.equip--tall .img--cover {
+  object-position: center bottom; /* put machine "feet" near bottom */
+}
+
+/* =========
+   Lazy-load fade-in (optional)
+   ========= */
+.img-fade { opacity: 0; transition: opacity .25s ease; }
+.img-fade.is-loaded { opacity: 1; }
+
+.card { border: 1px solid var(--n-800); border-radius: var(--radius-2xl); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+.card__media { height: 12rem; background: var(--n-800); position: relative; display: flex; align-items: center; justify-content: center; }
 .card__body { padding: 1.25rem; background: color-mix(in oklab, var(--n-900) 60%, transparent); }
 
 /* Ring mimic for boxes */

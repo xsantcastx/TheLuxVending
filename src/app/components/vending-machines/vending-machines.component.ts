@@ -13,15 +13,23 @@ import { CommonModule } from '@angular/common';
           <p class="text-soft">Choose from our proven revenue generators</p>
         </div>
 
-        <div class="grid grid-md-3 gap-6">
+        <div class="equip-grid">
           <!-- ATM Machine -->
-          <div class="card">
-            <div class="card__media overflow-hidden">
-              <img src="assets/atm.jpg" alt="ATM Machine" class="w-full h-48 object-cover" />
+          <article class="equip-card">
+            <div class="equip-card__media img-frame ar-4x3 equip--tall">
+              <img
+                src="assets/1.png"
+                alt="ATM — $3.50 convenience fee"
+                class="img--contain img-fade"
+                loading="lazy"
+                decoding="async"
+                onload="this.classList.add('is-loaded')"
+              />
+              <div class="img-caption">ATM • $3.50 per transaction</div>
             </div>
-            <div class="card__body">
-              <h3 class="h3 mb-3">ATM Machine</h3>
-              <p class="text-soft mb-4">High-traffic cash access point for your customers.</p>
+            <div class="equip-card__body">
+              <h3 class="equip-title">ATM Machine</h3>
+              <p class="equip-meta">High-traffic cash access point for your customers.</p>
               
               <!-- Service Areas -->
               <div class="flex flex-wrap gap-2 mb-4">
@@ -44,16 +52,24 @@ import { CommonModule } from '@angular/common';
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
           <!-- Claw Machine -->
-          <div class="card">
-            <div class="card__media overflow-hidden">
-              <img src="assets/Extreme_mini.jpg" alt="Claw Machine" class="w-full h-48 object-cover" />
+          <article class="equip-card">
+            <div class="equip-card__media img-frame ar-4x3 equip--tall">
+              <img
+                src="assets/2.png"
+                alt="Claw Machine — $2 per play"
+                class="img--contain img-fade"
+                loading="lazy"
+                decoding="async"
+                onload="this.classList.add('is-loaded')"
+              />
+              <div class="img-caption">Claw Machine • $2 per play</div>
             </div>
-            <div class="card__body">
-              <h3 class="h3 mb-3">Claw Machine</h3>
-              <p class="text-soft mb-4">Popular entertainment machine that draws repeat customers.</p>
+            <div class="equip-card__body">
+              <h3 class="equip-title">Claw Machine</h3>
+              <p class="equip-meta">Popular entertainment machine that draws repeat customers.</p>
               
               <!-- Service Areas -->
               <div class="flex flex-wrap gap-2 mb-4">
@@ -76,16 +92,24 @@ import { CommonModule } from '@angular/common';
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
           <!-- Vending Machine -->
-          <div class="card">
-            <div class="card__media overflow-hidden">
-              <img src="assets/mini_mighty.jpg" alt="Vending Machine" class="w-full h-48 object-cover" />
+          <article class="equip-card">
+            <div class="equip-card__media img-frame ar-4x3">
+              <img
+                src="assets/3.png"
+                alt="Vending Machine — snacks & drinks"
+                class="img--contain img-fade"
+                loading="lazy"
+                decoding="async"
+                onload="this.classList.add('is-loaded')"
+              />
+              <div class="img-caption">Vending Machine • Snacks & drinks</div>
             </div>
-            <div class="card__body">
-              <h3 class="h3 mb-3">Vending Machine</h3>
-              <p class="text-soft mb-4">Snacks and drinks machine perfect for any location.</p>
+            <div class="equip-card__body">
+              <h3 class="equip-title">Vending Machine</h3>
+              <p class="equip-meta">Snacks and drinks machine perfect for any location.</p>
               
               <!-- Service Areas -->
               <div class="flex flex-wrap gap-2 mb-4">
@@ -108,7 +132,7 @@ import { CommonModule } from '@angular/common';
                 </div>
               </div>
             </div>
-          </div>
+          </article>
         </div>
 
         <!-- Benefits Box -->
@@ -119,7 +143,7 @@ import { CommonModule } from '@angular/common';
                 <h3 class="h3 mb-4">Why Partner With Us?</h3>
                 <ul class="list">
                   <li><strong>Zero upfront cost</strong> - We provide everything</li>
-                  <li><strong>Prime locations</strong> - We secure high-traffic spots</li>
+                  <li><strong>Increase revenue</strong> - Passive income stream</li>
                   <li><strong>Full service</strong> - Installation, stocking, maintenance</li>
                   <li><strong>Monthly payouts</strong> - Direct deposit, transparent reporting</li>
                   <li><strong>Proven results</strong> - 95% of partners earn projected revenue</li>

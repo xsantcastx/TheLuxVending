@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section class="hero">
+    <section id="top" class="hero">
       <div class="container-lg hero__grid">
         <div>
           <p class="xs text-muted">Local • Reliable • Hassle-Free</p>

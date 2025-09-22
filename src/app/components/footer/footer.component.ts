@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
             <div>
               <h2 class="h2 mb-4">Check <span class="accent">eligibility</span></h2>
               <p class="text-soft mb-6">
-                Ready to start earning? Tell us about your business and we'll create a custom proposal.
+                Ready to start earning? Tell us about your business and we'll check if you qualify for our services.
               </p>
               
               <form class="space-y-4" (ngSubmit)="onSubmit($event)">
@@ -221,7 +221,7 @@ export class FooterComponent {
   isSubmitting = signal<boolean>(false);
   submitStatus = signal<'success' | 'error' | null>(null);
 
-  onSubmit(event: Event) {
+  async onSubmit(event: Event) {
     event.preventDefault();
     
     if (!this.firstName() || !this.lastName() || !this.email()) {
@@ -231,30 +231,47 @@ export class FooterComponent {
     this.isSubmitting.set(true);
     this.submitStatus.set(null);
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted:', {
+    try {
+      const formData = {
         firstName: this.firstName(),
         lastName: this.lastName(),
         email: this.email(),
         phone: this.phone(),
         businessType: this.businessType(),
         message: this.message()
+      };
+
+      const response = await fetch('/api/submitContactForm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
       });
 
+      const result = await response.json();
+
+      if (result.success) {
+        this.submitStatus.set('success');
+        // Clear form
+        this.firstName.set('');
+        this.lastName.set('');
+        this.email.set('');
+        this.phone.set('');
+        this.businessType.set('');
+        this.message.set('');
+      } else {
+        console.error('Form submission error:', result.error);
+        this.submitStatus.set('error');
+      }
+
+    } catch (error) {
+      console.error('Network error:', error);
+      this.submitStatus.set('error');
+    } finally {
       this.isSubmitting.set(false);
-      this.submitStatus.set('success');
-
-      // Clear form
-      this.firstName.set('');
-      this.lastName.set('');
-      this.email.set('');
-      this.phone.set('');
-      this.businessType.set('');
-      this.message.set('');
-
-      // Clear success message after 5 seconds
+      // Clear status message after 5 seconds
       setTimeout(() => this.submitStatus.set(null), 5000);
-    }, 2000);
+    }
   }
 }

@@ -10,10 +10,10 @@ import { AccentColorService } from '../../services/accent-color.service';
     <header class="header">
       <nav class="container-lg nav">
         <div class="nav__brand">
-          <div class="h-8 w-8">
-            <img src="assets/TheLuxVendingLogo.jpg" alt="TheLuxVending Logo" class="w-full h-full object-contain rounded" />
-          </div>
-          <span class="font-semibold">TheLuxVending</span>
+          <a href="#top" class="nav__logo-wrap hover:opacity-80 transition-opacity">
+            <img src="assets/White logo.png" alt="TheLuxVending Logo" class="nav__logo-img" />
+            <span class="nav__logo-text">TheLuxVending</span>
+          </a>
         </div>
         <div class="nav__links">
           <a href="#how">How It Works</a>
