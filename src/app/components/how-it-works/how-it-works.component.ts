@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
             <div class="step-number">1</div>
             <h3 class="h3 mb-4">You provide the space</h3>
             <p class="text-soft mb-4">
-              High-traffic businesses like gyms, hotels, offices, laundromats, and convenience stores.
+              High-traffic businesses like gyms, hotels, retail stores, laundromats, and convenience stores.
             </p>
             <ul class="list">
               <li>Minimum 2x3 ft floor space</li>
@@ -50,7 +50,7 @@ import { CommonModule } from '@angular/common';
               Receive monthly payments directly to your account. No fees or deductions.
             </p>
             <ul class="list">
-              <li>30-70% revenue split</li>
+              <li>Up to 25% profit share</li>
               <li>Monthly payment schedule</li>
               <li>Transparent reporting</li>
             </ul>

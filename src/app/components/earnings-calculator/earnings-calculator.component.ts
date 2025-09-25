@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 type MachineType = 'atm' | 'claw' | 'vending';
-type LocationType = 'gym' | 'office' | 'hotel' | 'convenience' | 'laundromat' | 'restaurant' | '';
+type LocationType = 'gym' | 'retail' | 'hotel' | 'convenience' | 'laundromat' | 'restaurant' | '';
 
 @Component({
   selector: 'app-earnings-calculator',
@@ -106,7 +106,7 @@ type LocationType = 'gym' | 'office' | 'hotel' | 'convenience' | 'laundromat' | 
                   (ngModelChange)="selectedLocation.set($event)">
                   <option value="">Choose your business type...</option>
                   <option value="gym">Gym/Fitness Center</option>
-                  <option value="office">Office Building</option>
+                  <option value="retail">Retail Stores</option>
                   <option value="hotel">Hotel/Motel</option>
                   <option value="convenience">Convenience Store</option>
                   <option value="laundromat">Laundromat</option>
@@ -210,7 +210,7 @@ export class EarningsCalculatorComponent {
     vendBuyRate: number;      // % of customers who buy from vending
   }> = {
     gym:         { atmConv: 0.020, clawPlayRate: 0.10, vendBuyRate: 0.12 },
-    office:      { atmConv: 0.030, clawPlayRate: 0.08, vendBuyRate: 0.14 },
+  retail:      { atmConv: 0.030, clawPlayRate: 0.08, vendBuyRate: 0.14 },
     hotel:       { atmConv: 0.040, clawPlayRate: 0.12, vendBuyRate: 0.18 },
     convenience: { atmConv: 0.050, clawPlayRate: 0.10, vendBuyRate: 0.22 },
     laundromat:  { atmConv: 0.060, clawPlayRate: 0.06, vendBuyRate: 0.25 },

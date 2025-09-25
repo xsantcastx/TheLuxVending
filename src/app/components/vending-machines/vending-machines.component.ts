@@ -113,7 +113,7 @@ import { CommonModule } from '@angular/common';
               
               <!-- Service Areas -->
               <div class="flex flex-wrap gap-2 mb-4">
-                <span class="chip">Offices</span>
+                <span class="chip">Retail Stores</span>
                 <span class="chip">Gyms</span>
                 <span class="chip">Schools</span>
               </div>

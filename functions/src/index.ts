@@ -1,6 +1,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import * as cors from "cors";
+import * as sendgrid from '@sendgrid/mail';
 import { Request, Response } from "express";
 
 // Initialize Firebase Admin
@@ -47,9 +48,44 @@ export const submitContactForm = functions.https.onRequest((request: Request, re
 
       functions.logger.info('Contact form submitted:', formData);
 
-      // For now, we'll just save to database
-      // TODO: Add email sending functionality
-      
+      // Attempt to send notification email using SendGrid if configured
+      try {
+        const cfg = functions.config();
+        const sgKey = cfg.sendgrid?.api_key;
+        const emailFrom = cfg.email?.from || cfg.sendgrid?.from;
+        const emailTo = cfg.email?.to || cfg.sendgrid?.to;
+
+        if (sgKey && emailFrom && emailTo) {
+          sendgrid.setApiKey(sgKey);
+
+          const subject = `New contact from ${formData.firstName} ${formData.lastName}`;
+          const html = `
+            <p><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Phone:</strong> ${formData.phone || '—'}</p>
+            <p><strong>Business:</strong> ${formData.businessType || '—'}</p>
+            <p><strong>Message:</strong><br/>${formData.message || '—'}</p>
+            <p>Contact ID: ${contactRef.id}</p>
+          `;
+
+          await sendgrid.send({
+            to: emailTo,
+            from: emailFrom,
+            subject,
+            html
+          });
+
+          // mark contact as notified
+          await admin.firestore().collection('contacts').doc(contactRef.id).update({ status: 'notified' });
+        } else {
+          functions.logger.info('SendGrid not configured; skipping email. Set functions config sendgrid.api_key, email.from, email.to');
+        }
+      } catch (mailErr) {
+        functions.logger.error('Error sending email:', mailErr);
+        // mark contact with email_failed but still return success to frontend
+        await admin.firestore().collection('contacts').doc(contactRef.id).update({ status: 'email_failed' });
+      }
+
       response.json({
         success: true,
         message: 'Form submitted successfully',

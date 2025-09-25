@@ -8,6 +8,21 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule],
   template: `
     <footer id="contact" class="footer">
+      <!-- Privacy & Terms sections -->
+      <div id="privacy" class="section section--tight">
+        <div class="container-lg">
+          <h3 class="h3">Privacy Policy</h3>
+          <p class="text-soft">We respect your privacy. We only collect contact information to evaluate eligibility and will never sell your data. By submitting this form you consent to processing for contact and service evaluation purposes.</p>
+          <p class="mt-4"><a href="#contact" class="policy-close">Close</a></p>
+        </div>
+      </div>
+      <div id="terms" class="section section--tight">
+        <div class="container-lg">
+          <h3 class="h3">Terms &amp; Conditions</h3>
+          <p class="text-soft">These terms govern your interactions with TheLuxVending. Service agreements and placement terms will be provided before installation. This website provides informational material and does not constitute a contract.</p>
+          <p class="mt-4"><a href="#contact" class="policy-close">Close</a></p>
+        </div>
+      </div>
       <!-- Main Content -->
       <div class="section">
         <div class="container-lg">
@@ -22,57 +37,66 @@ import { FormsModule } from '@angular/forms';
               <form class="space-y-4" (ngSubmit)="onSubmit($event)">
                 <div class="form-grid form-grid--2">
                   <div>
-                    <label class="block font-semibold mb-2">First Name *</label>
+                    <label for="firstName" class="block font-semibold mb-2">First Name *</label>
                     <input 
+                      id="firstName"
                       type="text" 
                       [(ngModel)]="firstName"
                       name="firstName"
                       required
                       class="input"
-                      placeholder="Your first name">
+                      placeholder="Your first name"
+                      aria-required="true">
                   </div>
                   <div>
-                    <label class="block font-semibold mb-2">Last Name *</label>
+                    <label for="lastName" class="block font-semibold mb-2">Last Name *</label>
                     <input 
+                      id="lastName"
                       type="text" 
                       [(ngModel)]="lastName"
                       name="lastName"
                       required
                       class="input"
-                      placeholder="Your last name">
+                      placeholder="Your last name"
+                      aria-required="true">
                   </div>
                 </div>
                 
                 <div>
-                  <label class="block font-semibold mb-2">Email Address *</label>
+                  <label for="email" class="block font-semibold mb-2">Email Address *</label>
                   <input 
+                    id="email"
                     type="email" 
                     [(ngModel)]="email"
                     name="email"
                     required
                     class="input"
-                    placeholder="your@email.com">
+                    placeholder="your@email.com"
+                    aria-required="true">
                 </div>
                 
                 <div>
-                  <label class="block font-semibold mb-2">Phone Number</label>
+                  <label for="phone" class="block font-semibold mb-2">Phone Number</label>
                   <input 
+                    id="phone"
                     type="tel" 
                     [(ngModel)]="phone"
                     name="phone"
                     class="input"
-                    placeholder="(555) 123-4567">
+                    placeholder="(555) 123-4567"
+                    aria-label="Phone number (optional)">
                 </div>
                 
                 <div>
-                  <label class="block font-semibold mb-2">Business Type</label>
+                  <label for="businessType" class="block font-semibold mb-2">Business Type</label>
                   <select 
+                    id="businessType"
                     [(ngModel)]="businessType"
                     name="businessType"
                     class="select">
                     <option value="">Select your business type...</option>
                     <option value="gym">Gym/Fitness Center</option>
-                    <option value="office">Office Building</option>
+                    <option value="retail">Retail Stores</option>
                     <option value="hotel">Hotel/Motel</option>
                     <option value="convenience">Convenience Store</option>
                     <option value="laundromat">Laundromat</option>
@@ -82,8 +106,9 @@ import { FormsModule } from '@angular/forms';
                 </div>
                 
                 <div>
-                  <label class="block font-semibold mb-2">Location Details</label>
+                  <label for="message" class="block font-semibold mb-2">Location Details</label>
                   <textarea 
+                    id="message"
                     [(ngModel)]="message"
                     name="message"
                     class="textarea"
@@ -94,6 +119,7 @@ import { FormsModule } from '@angular/forms';
                 <button 
                   type="submit"
                   [disabled]="isSubmitting()"
+                  [attr.aria-busy]="isSubmitting() ? 'true' : 'false'"
                   class="btn btn--accent w-full">
                   @if (isSubmitting()) {
                     <span class="flex items-center justify-center">
@@ -107,6 +133,8 @@ import { FormsModule } from '@angular/forms';
                 
                 @if (submitStatus()) {
                   <div class="text-center p-4 rounded-xl"
+                       role="status"
+                       aria-live="polite"
                        [class.bg-emerald-900/30]="submitStatus() === 'success'"
                        [class.text-emerald-400]="submitStatus() === 'success'"
                        [class.bg-red-900/30]="submitStatus() === 'error'"
@@ -200,7 +228,7 @@ import { FormsModule } from '@angular/forms';
       <!-- Bottom Bar -->
       <div class="container-lg footer__row">
         <div>
-          © 2024 TheLuxVending • All rights reserved.
+          © 2025 TheLuxVending • All rights reserved.
         </div>
         <div class="footer__links">
           <a href="#privacy">Privacy</a>

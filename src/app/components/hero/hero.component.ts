@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -22,24 +22,115 @@ import { CommonModule } from '@angular/common';
             <div class="flex items-center gap-2"><span class="dot"></span>We Handle Everything</div>
           </div>
         </div>
+
         <div class="hero__side">
-          <div class="hero__frame">
-            <!-- Hero image placeholder -->
-            <div class="w-full h-full flex items-center justify-center">
-              <div class="text-center">
-                <div class="w-16 h-16 mx-auto mb-4 bg-accent-bg rounded-xl flex items-center justify-center">
-                  <span class="text-2xl">🎰</span>
-                </div>
-                <p class="text-soft">Vending Machine Preview</p>
+          <div class="hero__frame img-frame">
+            <div class="carousel-simple" (mouseenter)="stopAutoplay()" (mouseleave)="startAutoplay()">
+              <button class="carousel__nav left" (click)="prev()">◀</button>
+              <div class="carousel-simple__stage">
+                <img class="carousel-simple__img" [src]="images[index()]" [alt]="'Vending '+(index()+1)" loading="lazy" (click)="openLightbox(index())" />
               </div>
+              <button class="carousel__nav right" (click)="next()">▶</button>
             </div>
           </div>
-          <p class="xs text-muted mt-3">Real photos of your installs will go here.</p>
+
+          <p class="xs text-muted mt-3">Click the image to expand.</p>
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" [class.show]="lightboxOpen()">
+        <div class="lightbox__backdrop" (click)="closeLightbox()"></div>
+        <div class="lightbox__content">
+          <button class="lightbox__close" (click)="closeLightbox()">✕</button>
+          <img [src]="images[index()]" [alt]="'Vending large ' + (index()+1)" />
+          <div class="lightbox__thumbnails">
+            <img *ngFor="let img of images; let i = index" [src]="img" [attr.srcset]="img + ' 1x'" loading="lazy" [class.selected]="i === index()" (click)="index.set(i)" />
+          </div>
         </div>
       </div>
     </section>
   `
 })
-export class HeroComponent {
+
+export class HeroComponent implements OnDestroy {
+  images = [
+    '/assets/venidingMachines/atm.jpg',
+    '/assets/venidingMachines/Extreme_mini.jpg',
+    '/assets/venidingMachines/extreme_mini2.jpg',
+    '/assets/venidingMachines/keyCatcher.jpg',
+    '/assets/venidingMachines/mini_mighty.jpg'
+  ];
+
+  index = signal<number>(0);
+  lightboxOpen = signal<boolean>(false);
+  autoplay = signal<boolean>(true);
+  private autoplayInterval: any = null;
+
+  constructor() {
+    // start autoplay
+    // Only start autoplay in the browser (avoid SSR errors)
+    if (typeof window !== 'undefined') {
+      this.startAutoplay();
+    }
+  }
+
+  startAutoplay() {
+    if (this.autoplayInterval) clearInterval(this.autoplayInterval);
+    if (!this.autoplay()) return;
+    this.autoplayInterval = setInterval(() => {
+      const cur = this.index();
+      this.index.set((cur + 1) % this.images.length);
+    }, 5000); // advance every 5s
+  }
+
+  stopAutoplay() {
+    if (this.autoplayInterval) { clearInterval(this.autoplayInterval); this.autoplayInterval = null; }
+  }
+
+  prev() {
+    const cur = this.index();
+    this.index.set((cur - 1 + this.images.length) % this.images.length);
+  }
+
+  next() {
+    const cur = this.index();
+    this.index.set((cur + 1) % this.images.length);
+  }
+
+  openLightbox(i: number) {
+    this.index.set(i);
+    this.lightboxOpen.set(true);
+    // pause autoplay while lightbox is open
+    this.stopAutoplay();
+    // attach keydown handler
+    if (typeof window !== 'undefined') {
+      window.addEventListener('keydown', this.onKeydown);
+    }
+  }
+
+  closeLightbox() {
+    this.lightboxOpen.set(false);
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('keydown', this.onKeydown);
+    }
+    // resume autoplay
+    this.startAutoplay();
+  }
+
+  ngOnDestroy(): void {
+    // cleanup listeners and intervals when component is destroyed
+    if (typeof window !== 'undefined') {
+      try { window.removeEventListener('keydown', this.onKeydown); } catch {}
+    }
+    this.stopAutoplay();
+  }
+
+  onKeydown = (ev: KeyboardEvent) => {
+    if (!this.lightboxOpen()) return;
+    if (ev.key === 'ArrowLeft') { this.prev(); }
+    if (ev.key === 'ArrowRight') { this.next(); }
+    if (ev.key === 'Escape') { this.closeLightbox(); }
+  }
 
 }
