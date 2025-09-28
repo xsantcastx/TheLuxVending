@@ -16,6 +16,12 @@ yarn-error.log
 functions/node_modules/
 functions/lib/
 
+# Environment variables
+.env
+functions/.env
+*.env.local
+*.env.production
+
 # IDEs and editors
 .idea/
 .project
