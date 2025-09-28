@@ -10,6 +10,13 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "https://www.theluxvending.com",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "/api/**",
