@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
       <div class="container-lg hero__grid">
         <div>
           <p class="xs text-muted">Local • Reliable • Hassle-Free</p>
-          <h1 class="h1 mt-3">Own a business? <span class="accent">Turn a corner into steady income.</span></h1>
+          <h1 class="h1 mt-3">Own a business? <span class="accent"> <br>Turn a corner into steady income.</span></h1>
           <p class="mt-4 text-soft">We install & service <strong>ATMs, claw and vending machines</strong>. No upfront cost. No maintenance. <strong>You collect your share monthly.</strong></p>
           <div class="mt-6 flex gap-3">
             <a href="#contact" class="btn btn--accent">Check eligibility</a>
