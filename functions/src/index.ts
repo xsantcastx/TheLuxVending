@@ -1,7 +1,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import * as cors from "cors";
-import * as sendgrid from '@sendgrid/mail';
+import * as nodemailer from 'nodemailer';
 import { Request, Response } from "express";
 
 // Initialize Firebase Admin
@@ -48,15 +48,27 @@ export const submitContactForm = functions.https.onRequest((request: Request, re
 
       functions.logger.info('Contact form submitted:', formData);
 
-      // Attempt to send notification email using SendGrid if configured
+      // Attempt to send notification email using Exchange/Outlook if configured
       try {
         const cfg = functions.config();
-        const sgKey = cfg.sendgrid?.api_key;
-        const emailFrom = cfg.email?.from || cfg.sendgrid?.from;
-        const emailTo = cfg.email?.to || cfg.sendgrid?.to;
+        const exchangeEmail = cfg.exchange?.email;
+        const exchangePassword = cfg.exchange?.password;
+        const emailTo = cfg.email?.to;
 
-        if (sgKey && emailFrom && emailTo) {
-          sendgrid.setApiKey(sgKey);
+        if (exchangeEmail && exchangePassword && emailTo) {
+          // Create transporter for Exchange Online (Office 365)
+          const transporter = nodemailer.createTransport({
+            host: 'smtp.office365.com',
+            port: 587,
+            secure: false, // Use STARTTLS
+            auth: {
+              user: exchangeEmail,
+              pass: exchangePassword
+            },
+            tls: {
+              ciphers: 'SSLv3'
+            }
+          });
 
           const subject = `New contact from ${formData.firstName} ${formData.lastName}`;
           const html = `
@@ -68,9 +80,9 @@ export const submitContactForm = functions.https.onRequest((request: Request, re
             <p>Contact ID: ${contactRef.id}</p>
           `;
 
-          await sendgrid.send({
+          await transporter.sendMail({
+            from: exchangeEmail,
             to: emailTo,
-            from: emailFrom,
             subject,
             html
           });
@@ -78,7 +90,7 @@ export const submitContactForm = functions.https.onRequest((request: Request, re
           // mark contact as notified
           await admin.firestore().collection('contacts').doc(contactRef.id).update({ status: 'notified' });
         } else {
-          functions.logger.info('SendGrid not configured; skipping email. Set functions config sendgrid.api_key, email.from, email.to');
+          functions.logger.info('Exchange not configured; skipping email. Set functions config exchange.email, exchange.password, email.to');
         }
       } catch (mailErr) {
         functions.logger.error('Error sending email:', mailErr);
