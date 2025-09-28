@@ -33,6 +33,6 @@ jobs:
     - name: Deploy Preview to Firebase Hosting
       run: |
         npm install -g firebase-tools
-        firebase deploy --token "$FIREBASE_TOKEN" --project theluxvending
+        firebase hosting:channel:deploy preview --token "$FIREBASE_TOKEN" --project theluxvending
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
