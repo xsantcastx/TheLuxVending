@@ -1,0 +1,4 @@
+# Environment variables for Firebase Functions
+.env
+node_modules/
+lib/
