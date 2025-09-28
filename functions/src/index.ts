@@ -3,6 +3,10 @@ import * as admin from "firebase-admin";
 import * as cors from "cors";
 import * as nodemailer from 'nodemailer';
 import { Request, Response } from "express";
+import * as dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 // Initialize Firebase Admin
 admin.initializeApp();
@@ -50,10 +54,10 @@ export const submitContactForm = functions.https.onRequest((request: Request, re
 
       // Attempt to send notification email using Exchange/Outlook if configured
       try {
-        const cfg = functions.config();
-        const exchangeEmail = cfg.exchange?.email;
-        const exchangePassword = cfg.exchange?.password;
-        const emailTo = cfg.email?.to;
+        // Use environment variables instead of functions.config()
+        const exchangeEmail = process.env.EXCHANGE_EMAIL;
+        const exchangePassword = process.env.EXCHANGE_PASSWORD;
+        const emailTo = process.env.EMAIL_TO;
 
         if (exchangeEmail && exchangePassword && emailTo) {
           // Create transporter for Exchange Online (Office 365)
@@ -90,7 +94,7 @@ export const submitContactForm = functions.https.onRequest((request: Request, re
           // mark contact as notified
           await admin.firestore().collection('contacts').doc(contactRef.id).update({ status: 'notified' });
         } else {
-          functions.logger.info('Exchange not configured; skipping email. Set functions config exchange.email, exchange.password, email.to');
+          functions.logger.info('Exchange not configured; skipping email. Set environment variables EXCHANGE_EMAIL, EXCHANGE_PASSWORD, EMAIL_TO');
         }
       } catch (mailErr) {
         functions.logger.error('Error sending email:', mailErr);
