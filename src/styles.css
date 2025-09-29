@@ -378,11 +378,13 @@ a:focus, .btn:focus, .input:focus, .select:focus, .textarea:focus {
   .hero__side { padding-left: 2rem; }
 }
 .hero__frame {
-  aspect-ratio: 4 / 3;
   border-radius: var(--radius-2xl);
   overflow: hidden;
   border: 1px solid var(--n-800);
   background: var(--n-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Hero background effects */
@@ -688,13 +690,11 @@ a:focus, .btn:focus, .input:focus, .select:focus, .textarea:focus {
 /* Video styles for hero */
 .hero__video { 
   width: 100%; 
-  max-width: 900px; 
   height: auto; 
-  max-height: 68vh; 
-  object-fit: contain; 
+  max-width: 100%;
   border-radius: .75rem; 
   display: block; 
-  background: var(--n-800); 
+  object-fit: contain;
 }
 
 .carousel__nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.35); color: white; border: none; padding: .5rem .75rem; border-radius: .5rem; cursor: pointer; }
