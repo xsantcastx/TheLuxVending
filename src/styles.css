@@ -685,6 +685,18 @@ a:focus, .btn:focus, .input:focus, .select:focus, .textarea:focus {
 .carousel-simple__stage { width: 100%; display:flex; align-items:center; justify-content:center; }
 .carousel-simple__img { width: 100%; max-width: 900px; height: auto; max-height: 68vh; object-fit: contain; border-radius: .75rem; cursor: pointer; transition: opacity .6s ease; display: block; background: var(--n-800); }
 
+/* Video styles for hero */
+.hero__video { 
+  width: 100%; 
+  max-width: 900px; 
+  height: auto; 
+  max-height: 68vh; 
+  object-fit: contain; 
+  border-radius: .75rem; 
+  display: block; 
+  background: var(--n-800); 
+}
+
 .carousel__nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.35); color: white; border: none; padding: .5rem .75rem; border-radius: .5rem; cursor: pointer; }
 .carousel__nav.left { left: .5rem; }
 .carousel__nav.right { right: .5rem; }
